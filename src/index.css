@@ -345,6 +345,130 @@ header {
   cursor: default;
 }
 
+/* ------------------------------------------------------ */
+/* -- WALLET MODAL -- */
+
+.wallet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.wallet-modal {
+  background: var(--clr-white);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.wallet-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.wallet-modal-header h2 {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+
+.wallet-close {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--clr-grey);
+}
+
+.wallet-list {
+  padding: 20px;
+}
+
+.wallet-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: var(--clr-white);
+  cursor: pointer;
+  font-family: "Open Sans";
+  font-size: 1em;
+  transition: all 200ms ease;
+}
+
+.wallet-option:hover {
+  border-color: var(--clr-blue);
+  background: #f8f7ff;
+}
+
+.wallet-icon-img {
+  width: 24px;
+  height: 24px;
+}
+
+.wallet-icon-fallback {
+  font-size: 1.5em;
+}
+
+.wallet-name {
+  font-weight: 600;
+}
+
+.wallet-empty {
+  text-align: center;
+  color: var(--clr-grey);
+  padding: 20px;
+}
+
+/* ------------------------------------------------------ */
+/* -- ACCOUNT DROPDOWN -- */
+
+.nav__account-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: 100%;
+  margin-top: 4px;
+  background: var(--clr-white);
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 50;
+  min-width: 100%;
+}
+
+.nav__dropdown button {
+  width: 100%;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Open Sans";
+  font-size: 0.95em;
+  color: #e53e3e;
+  white-space: nowrap;
+  transition: background 200ms ease;
+}
+
+.nav__dropdown button:hover {
+  background: #fff5f5;
+}
+
 @media screen and (max-width: 768px) {
   nav {
     grid-template-columns: repeat(2, 1fr);

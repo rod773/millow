@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ethers } from 'ethers';
 
 // Components
@@ -51,7 +51,11 @@ function App() {
     setEscrow(escrow)
   }
 
+  const loaded = useRef(false)
+
   useEffect(() => {
+    if (loaded.current) return
+    loaded.current = true
     loadBlockchainData()
   }, [])
 
