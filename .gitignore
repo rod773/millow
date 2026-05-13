@@ -33,6 +33,7 @@ typechain-types
 cache
 artifacts
 
+.next
 
 node_modules
 .env
@@ -45,3 +46,4 @@ typechain-types
 cache
 artifacts
 
+.next
