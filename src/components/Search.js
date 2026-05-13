@@ -19,7 +19,7 @@ const Search = ({ titleAnimKey }) => {
             key={word}
             initial={{ opacity: 0, y: 30, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.7, delay: i * 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.7, delay: i * 0.4, ease: 'easeOut' }}
           >
             {word}{' '}
           </motion.span>
