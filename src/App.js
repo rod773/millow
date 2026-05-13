@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { ethers } from 'ethers';
 
 // Components
@@ -24,6 +25,7 @@ function App() {
   const [home, setHome] = useState({})
   const [toggle, setToggle] = useState(false);
   const [alertMsg, setAlertMsg] = useState(null);
+  const [titleAnimKey, setTitleAnimKey] = useState(0);
 
   const loadBlockchainData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -69,7 +71,7 @@ function App() {
   return (
     <div>
       <Navigation account={account} setAccount={setAccount} />
-      <Search />
+      <Search titleAnimKey={titleAnimKey} />
 
       <div className='cards__section'>
 
@@ -102,9 +104,11 @@ function App() {
         <Home home={home} provider={provider} escrow={escrow} togglePop={togglePop} />
       )}
 
-      {alertMsg && (
-        <Alert message={alertMsg} onClose={() => setAlertMsg(null)} />
-      )}
+      <AnimatePresence>
+        {alertMsg && (
+          <Alert message={alertMsg} onClose={() => { setAlertMsg(null); setTitleAnimKey(k => k + 1) }} />
+        )}
+      </AnimatePresence>
 
     </div>
   );
