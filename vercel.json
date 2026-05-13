@@ -1,4 +1,5 @@
 {
+    "installCommand": "yarn install --production=true",
     "buildCommand": "react-scripts build",
     "outputDirectory": "build",
     "framework": "create-react-app"
