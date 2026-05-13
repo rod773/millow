@@ -7,14 +7,6 @@ const Home = ({ home, provider, escrow, togglePop }) => {
     const [isBuying, setIsBuying] = useState(false)
     const [owner, setOwner] = useState(null)
 
-    const fetchOwner = async () => {
-        if (isBuying) return
-        if (await escrow.isListed(home.id)) return
-
-        const owner = await escrow.buyer(home.id)
-        setOwner(owner)
-    }
-
     const buyHandler = async () => {
         setIsBuying(true)
 
@@ -61,8 +53,14 @@ const Home = ({ home, provider, escrow, togglePop }) => {
     }
 
     useEffect(() => {
+        const fetchOwner = async () => {
+            if (isBuying) return
+            if (await escrow.isListed(home.id)) return
+            const owner = await escrow.buyer(home.id)
+            setOwner(owner)
+        }
         fetchOwner()
-    }, [isBuying])
+    }, [isBuying, escrow, home.id])
 
     return (
         <div className="home">
