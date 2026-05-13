@@ -28,7 +28,13 @@ function App() {
     setProvider(provider)
     const network = await provider.getNetwork()
 
-    const realEstate = new ethers.Contract(config[network.chainId].realEstate.address, RealEstate, provider)
+    const chainConfig = config[network.chainId]
+    if (!chainConfig) {
+      window.alert('Smart contract not deployed to detected network')
+      return
+    }
+
+    const realEstate = new ethers.Contract(chainConfig.realEstate.address, RealEstate, provider)
     const totalSupply = await realEstate.totalSupply()
     const homes = []
 
@@ -41,7 +47,7 @@ function App() {
 
     setHomes(homes)
 
-    const escrow = new ethers.Contract(config[network.chainId].escrow.address, Escrow, provider)
+    const escrow = new ethers.Contract(chainConfig.escrow.address, Escrow, provider)
     setEscrow(escrow)
   }
 
