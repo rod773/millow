@@ -431,6 +431,66 @@ header {
   padding: 20px;
 }
 
+.wallet-empty p {
+  margin-bottom: 12px;
+}
+
+.wallet-install {
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: var(--clr-blue);
+  color: var(--clr-white);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-family: "Open Sans";
+  font-size: 0.95em;
+  transition: background 200ms ease;
+}
+
+.wallet-install:hover {
+  background-color: var(--clr-blue-2);
+}
+
+.wallet-divider {
+  display: flex;
+  align-items: center;
+  padding: 0 20px 10px;
+  gap: 12px;
+  color: var(--clr-grey);
+  font-size: 0.85em;
+}
+
+.wallet-divider::before,
+.wallet-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.wallet-extra {
+  padding: 0 20px 20px;
+}
+
+.wallet-icon-wc,
+.wallet-icon-cb {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.wallet-icon-wc svg,
+.wallet-icon-cb svg {
+  width: 28px;
+  height: 28px;
+}
+
+.wallet-option:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ------------------------------------------------------ */
 /* -- ACCOUNT DROPDOWN -- */
 
