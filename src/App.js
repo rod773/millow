@@ -5,6 +5,7 @@ import { ethers } from 'ethers';
 import Navigation from './components/Navigation';
 import Search from './components/Search';
 import Home from './components/Home';
+import Alert from './components/Alert';
 
 // ABIs
 import RealEstate from './abis/RealEstate.json'
@@ -22,6 +23,7 @@ function App() {
   const [homes, setHomes] = useState([])
   const [home, setHome] = useState({})
   const [toggle, setToggle] = useState(false);
+  const [alertMsg, setAlertMsg] = useState(null);
 
   const loadBlockchainData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -30,7 +32,7 @@ function App() {
 
     const chainConfig = config[network.chainId]
     if (!chainConfig) {
-      window.alert('Smart contract not deployed to detected network')
+      setAlertMsg('Smart contract not deployed to detected network')
       return
     }
 
@@ -98,6 +100,10 @@ function App() {
 
       {toggle && (
         <Home home={home} provider={provider} escrow={escrow} togglePop={togglePop} />
+      )}
+
+      {alertMsg && (
+        <Alert message={alertMsg} onClose={() => setAlertMsg(null)} />
       )}
 
     </div>

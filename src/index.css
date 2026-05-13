@@ -346,6 +346,81 @@ header {
 }
 
 /* ------------------------------------------------------ */
+/* -- ALERT MODAL -- */
+
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.alert-modal {
+  background: var(--clr-white);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.alert-header h2 {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #d32f2f;
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--clr-grey);
+}
+
+.alert-body {
+  padding: 30px 20px;
+}
+
+.alert-body p {
+  font-size: 1em;
+  color: var(--clr-black);
+  line-height: 1.5;
+}
+
+.alert-footer {
+  padding: 0 20px 20px;
+}
+
+.alert-btn {
+  padding: 10px 40px;
+  background: var(--clr-blue);
+  color: var(--clr-white);
+  border: none;
+  border-radius: 6px;
+  font-family: "Open Sans";
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.alert-btn:hover {
+  background: var(--clr-blue-2);
+}
+
+/* ------------------------------------------------------ */
 /* -- WALLET MODAL -- */
 
 .wallet-overlay {
