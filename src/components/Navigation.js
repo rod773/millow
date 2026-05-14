@@ -5,6 +5,7 @@ import WalletModal from './WalletModal'
 const Navigation = ({ account, setAccount }) => {
   const [walletModalOpen, setWalletModalOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleConnect = (account) => {
     setAccount(account)
@@ -18,10 +19,20 @@ const Navigation = ({ account, setAccount }) => {
   return (
     <>
       <nav>
-        <ul className='nav__links'>
-          <li><a href="/">Buy</a></li>
-          <li><a href="/">Rent</a></li>
-          <li><a href="/">Sell</a></li>
+        <button
+          className="nav__hamburger"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul className={`nav__links${mobileMenuOpen ? ' nav__links--open' : ''}`}>
+          <li><a href="/" onClick={() => setMobileMenuOpen(false)}>Buy</a></li>
+          <li><a href="/" onClick={() => setMobileMenuOpen(false)}>Rent</a></li>
+          <li><a href="/" onClick={() => setMobileMenuOpen(false)}>Sell</a></li>
         </ul>
 
         <div className='nav__brand'>
@@ -54,6 +65,8 @@ const Navigation = ({ account, setAccount }) => {
           </button>
         )}
       </nav>
+
+      {mobileMenuOpen && <div className="nav__mobile-overlay" onClick={() => setMobileMenuOpen(false)} />}
 
       {walletModalOpen && (
         <WalletModal
