@@ -9,33 +9,38 @@ const WalletModal = ({ onClose, onConnect }) => {
     const detected = new Map()
 
     const handleAnnounce = (e) => {
-      const { info, provider } = e.detail
-      if (!detected.has(info.uuid)) {
-        detected.set(info.uuid, { info, provider })
-        setWallets(Array.from(detected.values()))
-      }
+      try {
+        const { info, provider } = e.detail
+        if (!detected.has(info.uuid)) {
+          detected.set(info.uuid, { info, provider })
+          setWallets(Array.from(detected.values()))
+        }
+      } catch (_) {}
     }
 
     window.addEventListener('eip6963:announceProvider', handleAnnounce)
-    window.dispatchEvent(new Event('eip6963:requestProvider'))
+    try { window.dispatchEvent(new Event('eip6963:requestProvider')) } catch (_) {}
 
     setTimeout(() => {
-      if (detected.size === 0 && window.ethereum) {
-        const name = window.ethereum.isMetaMask ? 'MetaMask' :
-                     window.ethereum.isCoinbaseWallet ? 'Coinbase Wallet' :
-                     window.ethereum.isRabby ? 'Rabby' :
-                     window.ethereum.isTrust ? 'Trust Wallet' :
-                     window.ethereum.isOKExWallet ? 'OKX Wallet' :
-                     window.ethereum.isTokenPocket ? 'TokenPocket' :
-                     window.ethereum.isBitKeep ? 'BitKeep' :
-                     'Injected Wallet'
+      try {
+        if (detected.size === 0 && window.ethereum) {
+          const p = window.ethereum
+          const name = p.isMetaMask ? 'MetaMask' :
+                       p.isCoinbaseWallet ? 'Coinbase Wallet' :
+                       p.isRabby ? 'Rabby' :
+                       p.isTrust ? 'Trust Wallet' :
+                       p.isOKExWallet ? 'OKX Wallet' :
+                       p.isTokenPocket ? 'TokenPocket' :
+                       p.isBitKeep ? 'BitKeep' :
+                       'Injected Wallet'
 
-        detected.set('legacy', {
-          info: { name, icon: '' },
-          provider: window.ethereum
-        })
-        setWallets(Array.from(detected.values()))
-      }
+          detected.set('legacy', {
+            info: { name, icon: '' },
+            provider: p
+          })
+          setWallets(Array.from(detected.values()))
+        }
+      } catch (_) {}
     }, 500)
 
     return () => window.removeEventListener('eip6963:announceProvider', handleAnnounce)

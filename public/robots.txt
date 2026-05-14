@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://millow.app/sitemap.xml
+Sitemap: https://millow-rod773.vercel.app/sitemap.xml
