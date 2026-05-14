@@ -1,8 +1,6 @@
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 
-import close from '../assets/close.svg';
-
 const Home = ({ home, provider, escrow, togglePop }) => {
     const [isBuying, setIsBuying] = useState(false)
     const [owner, setOwner] = useState(null)
@@ -116,7 +114,7 @@ const Home = ({ home, provider, escrow, togglePop }) => {
 
 
                 <button onClick={togglePop} className="home__close">
-                    <img src={close} alt="Close" />
+                    <img src="/assets/close.svg" alt="Close" />
                 </button>
             </div>
         </div >

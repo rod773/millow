@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import logo from '../assets/logo.svg'
 import WalletModal from './WalletModal'
 
 const Navigation = ({ account, setAccount }) => {
@@ -36,7 +35,7 @@ const Navigation = ({ account, setAccount }) => {
         </ul>
 
         <div className='nav__brand'>
-          <img src={logo} alt="Logo" />
+          <img src="/assets/logo.svg" alt="Logo" />
           <h1>Millow</h1>
         </div>
 

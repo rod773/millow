@@ -2,20 +2,17 @@ import { useEffect, useState, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ethers } from 'ethers';
 
-// Components
-import Navigation from './components/Navigation';
-import Search from './components/Search';
-import Home from './components/Home';
-import Alert from './components/Alert';
+import Navigation from '../src/components/Navigation';
+import Search from '../src/components/Search';
+import Home from '../src/components/Home';
+import Alert from '../src/components/Alert';
 
-// ABIs
-import RealEstate from './abis/RealEstate.json'
-import Escrow from './abis/Escrow.json'
+import RealEstate from '../src/abis/RealEstate.json'
+import Escrow from '../src/abis/Escrow.json'
 
-// Config
-import config from './config.json';
+import config from '../src/config.json';
 
-function App() {
+export default function Index() {
   const [provider, setProvider] = useState(null)
   const [escrow, setEscrow] = useState(null)
 
@@ -113,5 +110,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
