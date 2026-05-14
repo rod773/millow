@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Millow",
+  "name": "Millow — Real Estate NFT Marketplace",
+  "description": "Search, explore, and buy tokenized real estate properties on the Ethereum blockchain.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#6C63FF",
   "background_color": "#ffffff"
 }
