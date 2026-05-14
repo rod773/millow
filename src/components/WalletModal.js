@@ -55,18 +55,10 @@ const WalletModal = ({ onClose, onConnect }) => {
       onClose()
     } catch (err) {
       console.error(err)
-      if (window.ethereum && window.ethereum.isMetaMask) {
-        try {
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-          onConnect(accounts[0])
-          onClose()
-          return
-        } catch (_) {}
-      }
       setError(
         err.code === 4001
-          ? 'Connection rejected. Please approve the connection in MetaMask.'
-          : 'Failed to connect. Make sure MetaMask is unlocked and try again.'
+          ? 'Connection rejected. Please approve the connection and try again.'
+          : 'Failed to connect. Make sure your wallet is unlocked and try again.'
       )
     }
   }
