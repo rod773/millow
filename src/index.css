@@ -566,6 +566,17 @@ header {
   font-weight: 600;
 }
 
+.wallet-error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 12px 20px;
+  margin: 0 20px 12px;
+  border-radius: 8px;
+  font-size: 0.85em;
+  text-align: center;
+  border: 1px solid #fecaca;
+}
+
 .wallet-empty {
   text-align: center;
   color: var(--clr-grey);

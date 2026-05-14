@@ -4,6 +4,7 @@ import { Web3Modal } from '@web3modal/standalone'
 const WalletModal = ({ onClose, onConnect }) => {
   const [wallets, setWallets] = useState([])
   const [connecting, setConnecting] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const detected = new Map()
@@ -47,12 +48,26 @@ const WalletModal = ({ onClose, onConnect }) => {
   }, [])
 
   const handleConnect = async (provider) => {
+    setError(null)
     try {
       const accounts = await provider.request({ method: 'eth_requestAccounts' })
       onConnect(accounts[0])
       onClose()
     } catch (err) {
       console.error(err)
+      if (window.ethereum && window.ethereum.isMetaMask) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+          onConnect(accounts[0])
+          onClose()
+          return
+        } catch (_) {}
+      }
+      setError(
+        err.code === 4001
+          ? 'Connection rejected. Please approve the connection in MetaMask.'
+          : 'Failed to connect. Make sure MetaMask is unlocked and try again.'
+      )
     }
   }
 
@@ -100,6 +115,8 @@ const WalletModal = ({ onClose, onConnect }) => {
           <h2>Connect Wallet</h2>
           <button className="wallet-close" onClick={onClose}>&times;</button>
         </div>
+        {error && <div className="wallet-error">{error}</div>}
+
         <div className="wallet-list">
           {wallets.length === 0 && (
             <div className="wallet-empty">
