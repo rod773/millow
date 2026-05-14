@@ -30,6 +30,24 @@ export default function Document() {
       </Head>
       <body>
         <Main />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function() {
+              function isExt(e) {
+                var s = (e && e.error && e.error.stack) || (e && e.reason && e.reason.stack);
+                return s && s.indexOf('chrome-extension://') !== -1;
+              }
+              window.addEventListener('error', function(e) {
+                if (isExt(e)) { e.stopImmediatePropagation(); e.preventDefault(); }
+              });
+              window.addEventListener('unhandledrejection', function(e) {
+                if (isExt(e)) { e.stopImmediatePropagation(); e.preventDefault(); }
+              });
+            })();
+            `,
+          }}
+        />
         <NextScript />
       </body>
     </Html>
